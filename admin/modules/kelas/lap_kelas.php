@@ -25,11 +25,8 @@ function view_angkatan($kelas, $link) {
         <tbody>
             <?php
             $no = 1;
-            $sql_laporan = mysqli_query($link, "SELECT tbl_kelas.id_kelas,tbl_kelas.kelas,tbl_siswa.nis,tbl_siswa.nama_lengkap,tbl_walikelas.id_wali,
-tbl_walikelas.nip,tbl_guru.nama_guru
-from tbl_kelas INNER JOIN tbl_siswa ON tbl_kelas.nis=tbl_siswa.nis
-INNER JOIN tbl_walikelas ON tbl_kelas.id_kelas=tbl_walikelas.id_kelas
-INNER JOIN tbl_guru ON tbl_guru.nip=tbl_walikelas.nip and tbl_kelas.kelas='$kelas' order by tbl_siswa.nis");
+            $sql_laporan = mysqli_query($link, "SELECT tbl_kelas.id_kelas,tbl_kelas.kelas,tbl_siswa.nis,tbl_siswa.nama_lengkap
+from tbl_kelas INNER JOIN tbl_siswa ON tbl_kelas.nis=tbl_siswa.nis and tbl_kelas.kelas='$kelas' ");
             while ($data_kelas = mysqli_fetch_assoc($sql_laporan)) {
                 ?>
                  <tr>

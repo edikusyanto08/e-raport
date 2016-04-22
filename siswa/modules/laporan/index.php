@@ -14,7 +14,7 @@ if (!isset($_GET['id'])) {
                 </legend>-->
                 <?php
                 $dt_mhs = mysqli_query($link, "SELECT tbl_siswa.nis,tbl_siswa.nama_lengkap,
-                    tbl_kelas.kelas,rapot.thn_ajaran,rapot.semester FROM tbl_siswa,tbl_kelas,rapot
+                    tbl_kelas.kelas,rapot.semester FROM tbl_siswa,tbl_kelas,rapot
                     where tbl_siswa.nis=tbl_kelas.nis and tbl_siswa.nis=rapot.nis and tbl_siswa.nis='" . $_SESSION['admin-siswa'] . "'");
                 $i_m = mysqli_fetch_array($dt_mhs);
                 ?>
@@ -31,11 +31,7 @@ if (!isset($_GET['id'])) {
                                 <td width="1%">:</td>
                                 <td><strong><big>Jl.Pejanggik No 3 Mataram</big></strong></td>
                             </tr>
-                            <tr>
-                                <td>Nama Lengkap</td>
-                                <td>:</td>
-                                <td><strong><big><?php echo $i_m['nama_lengkap']; ?></big></strong></td>
-                            </tr>
+                            
 
 
 
@@ -49,17 +45,13 @@ if (!isset($_GET['id'])) {
                                 <td>:</td>
                                 <td><strong><big><?php echo $i_m['nis']; ?></big></strong></td>
                             </tr>
-                            <!-- <tr>
-                                <td>Kelas</td>
-                                <td>:</td>
-                                <td><strong><big><?php //echo $i_m['kelas']; ?></big></strong></td>
-                            </tr> -->
-
                             <tr>
-                                <td>Tahun Pelajaran</td>
+                                <td>Nama Lengkap</td>
                                 <td>:</td>
-                                <td><strong><big><?php echo $i_m['thn_ajaran']; ?></big></strong></td>
+                                <td><strong><big><?php echo $i_m['nama_lengkap']; ?></big></strong></td>
                             </tr>
+
+                            
 
                         </table>
                     </div>
@@ -156,34 +148,91 @@ if (!isset($_GET['id'])) {
                                         ?>
                                     </tbody>
                                 </table> 
-                                <div class="row">
-                                    <div class="col-md-12 text-left">
-                                        <div class="panel panel-info">
+                                 <div class="row">
+                            <div class="col-sm-6">
+                            <div class="panel panel-info">
                                             <!-- Default panel contents -->
-                                            <div class="panel-heading"><i class="fa  fa-list-alt fa-fw fa-2x"></i> Kegiatan Ektrakurikuler Siswa </div>
-                                            <!-- <div id='container'></div> -->
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <div class="panel panel-info">
+                            <div class="panel-heading"><i class="fa   fa-book fa-fw fa-2x"></i> Akhlak dan Kepribadian Siswa</div>
+                            <div class="panel-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                            <?php
+                                $presensi= mysqli_query($link,"select tbl_siswa.nis,tbl_kelas.id_kelas,tbl_kelas.kd_kelas,presensi.semester,
+                                presensi.alfa,presensi.izin,presensi.sakit,presensi.akhlak,presensi.pribadi from
+tbl_siswa,tbl_kelas,presensi where presensi.nis=tbl_siswa.nis and presensi.nis=tbl_kelas.nis and presensi.nis='" . $_SESSION['admin-siswa'] . "'
+and tbl_kelas.kd_kelas='VII' and presensi.semester='Ganjil'");
+                                        while ($row1 = mysqli_fetch_array($presensi)) {
+                                            //$kelas=$data_mhs['kelas'];
+                                            ?>
+                                <thead>
+                                        
+                                       <!--  <tr class="">
+                                               <th colspan="2" width="5%">Aklak dan Kepribadian</th>
+                                               
+
+                                               
+                                           </tr> -->
+                                            
+
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Akhlak</td>
+                                        <td width="15%"><?php echo $row1['akhlak'];?></td>
+                                        
+                                    </tr>
+                                        <tr>
+                                            <td>Kepribadian</td>
+                                            <td width="15%"><?php echo $row1['pribadi'];?></td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                            </div>
+                            </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                            <div class="panel panel-info">
                                             <!-- Default panel contents -->
-                                            <div class="panel-heading"><i class="fa   fa-book fa-fw fa-2x"></i> Akhlak dan Kepribadian Siswa</div>
-                                            <!-- <div id='container'></div> -->
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <div class="panel panel-info">
-                                            <!-- Default panel contents -->
-                                            <div class="panel-heading"><i class="fa  fa-file-text fa-fw fa-2x"></i> Ketidak Hadiran Siswa</div>
-                                            <!-- <div id='container'></div> -->
-                                        </div>
-                                    </div>
+                            <div class="panel-heading"><i class="fa   fa-book fa-fw fa-2x"></i> Kehadiran Siswa</div>
+                            <div class="panel-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                        
+                                        <tr class="">
+                                              <!--  <th colspan="3" width="5%">Kehadiran</th> -->
+                                               
 
+                                               
+                                           </tr>
+                                           
 
-                                </div> 
-
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                        <td>Sakit</td>
+                                        <td width="15%"><?php echo $row1['sakit'];?> Hari</td>
+                                        
+                                    </tr>
+                                        <tr>
+                                            <td>Izin</td>
+                                            <td width="15%"><?php echo $row1['izin'];?> Hari</td>
+                                        </tr>
+                                         <tr>
+                                            <td>Alfa</td>
+                                            <td  width="15%"><?php echo $row1['alfa'];?> Hari</td>
+                                        </tr>
+                                    </tbody>
+                                    <?php }
+                                    ?>
+                            </table>
+                            </div>
                             </div>
                         </div>
+                       </div>
+                
+                       </div>
+                       </div>
+                        
 
 
 
@@ -265,7 +314,90 @@ if (!isset($_GET['id'])) {
                                     ?>
                                 </tbody>
                             </table>
+                             <div class="row">
+                            <div class="col-sm-6">
+                            <div class="panel panel-info">
+                                            <!-- Default panel contents -->
+                            <div class="panel-heading"><i class="fa   fa-book fa-fw fa-2x"></i> Akhlak dan Kepribadian Siswa</div>
+                            <div class="panel-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                            <?php
+                                $presensi= mysqli_query($link,"select tbl_siswa.nis,tbl_kelas.id_kelas,tbl_kelas.kd_kelas,presensi.semester,
+                                presensi.alfa,presensi.izin,presensi.sakit,presensi.akhlak,presensi.pribadi from
+tbl_siswa,tbl_kelas,presensi where presensi.nis=tbl_siswa.nis and presensi.nis=tbl_kelas.nis and presensi.nis='" . $_SESSION['admin-siswa'] . "'
+and tbl_kelas.kd_kelas='VII' and presensi.semester='Genap'");
+                                        while ($row1 = mysqli_fetch_array($presensi)) {
+                                            //$kelas=$data_mhs['kelas'];
+                                            ?>
+                                <thead>
+                                        
+                                       <!--  <tr class="">
+                                               <th colspan="2" width="5%">Aklak dan Kepribadian</th>
+                                               
+
+                                               
+                                           </tr> -->
+                                            
+
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Akhlak</td>
+                                        <td width="15%"><?php echo $row1['akhlak'];?></td>
+                                        
+                                    </tr>
+                                        <tr>
+                                            <td>Kepribadian</td>
+                                            <td width="15%"><?php echo $row1['pribadi'];?></td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                            </div>
+                            </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                            <div class="panel panel-info">
+                                            <!-- Default panel contents -->
+                            <div class="panel-heading"><i class="fa   fa-book fa-fw fa-2x"></i> Kehadiran Siswa</div>
+                            <div class="panel-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                        
+                                        <tr class="">
+                                              <!--  <th colspan="3" width="5%">Kehadiran</th> -->
+                                               
+
+                                               
+                                           </tr>
+                                           
+
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                        <td>Sakit</td>
+                                        <td width="15%"><?php echo $row1['sakit'];?> Hari</td>
+                                        
+                                    </tr>
+                                        <tr>
+                                            <td>Izin</td>
+                                            <td width="15%"><?php echo $row1['izin'];?> Hari</td>
+                                        </tr>
+                                         <tr>
+                                            <td>Alfa</td>
+                                            <td  width="15%"><?php echo $row1['alfa'];?> Hari</td>
+                                        </tr>
+                                    </tbody>
+                                    <?php }
+                                    ?>
+                            </table>
+                            </div>
+                            </div>
                         </div>
+                       </div>
+                       </div>
+
+                        
 
                         <div class="tab-pane" id="viii">
 
@@ -344,7 +476,91 @@ if (!isset($_GET['id'])) {
                                     ?>
                                 </tbody>
                             </table>
+                            <div class="row">
+                            <div class="col-sm-6">
+                            <div class="panel panel-info">
+                                            <!-- Default panel contents -->
+                            <div class="panel-heading"><i class="fa   fa-book fa-fw fa-2x"></i> Akhlak dan Kepribadian Siswa</div>
+                            <div class="panel-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                            <?php
+                                $presensi= mysqli_query($link,"select tbl_siswa.nis,tbl_kelas.id_kelas,tbl_kelas.kd_kelas,presensi.semester,
+                                presensi.alfa,presensi.izin,presensi.sakit,presensi.akhlak,presensi.pribadi from
+tbl_siswa,tbl_kelas,presensi where presensi.nis=tbl_siswa.nis and presensi.nis=tbl_kelas.nis and presensi.nis='" . $_SESSION['admin-siswa'] . "'
+and tbl_kelas.kd_kelas='VIII' and presensi.semester='Ganjil'");
+                                        while ($row1 = mysqli_fetch_array($presensi)) {
+                                            //$kelas=$data_mhs['kelas'];
+                                            ?>
+                                <thead>
+                                        
+                                       <!--  <tr class="">
+                                               <th colspan="2" width="5%">Aklak dan Kepribadian</th>
+                                               
+
+                                               
+                                           </tr> -->
+                                            
+
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Akhlak</td>
+                                        <td width="15%"><?php echo $row1['akhlak'];?></td>
+                                        
+                                    </tr>
+                                        <tr>
+                                            <td>Kepribadian</td>
+                                            <td width="15%"><?php echo $row1['pribadi'];?></td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="col-sm-6">
+                            <div class="panel panel-info">
+                                            <!-- Default panel contents -->
+                            <div class="panel-heading"><i class="fa   fa-book fa-fw fa-2x"></i> Kehadiran Siswa</div>
+                            <div class="panel-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                        
+                                        <!-- <tr class="">
+                                               <th colspan="3" width="5%">Kehadiran</th>
+                                               
+
+                                               
+                                           </tr> -->
+                                           
+
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                        <td>Sakit</td>
+                                        <td width="15%"><?php echo $row1['sakit'];?> Hari</td>
+                                        
+                                    </tr>
+                                        <tr>
+                                            <td>Izin</td>
+                                            <td width="15%"><?php echo $row1['izin'];?> Hari</td>
+                                        </tr>
+                                         <tr>
+                                            <td>Alfa</td>
+                                            <td  width="15%"><?php echo $row1['alfa'];?> Hari</td>
+                                        </tr>
+                                    </tbody>
+                                    <?php }
+                                    ?>
+                            </table>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                       
+                            
                         </div>
+                        
+                        
 
                         <div class="tab-pane" id="viiib">
 
@@ -423,7 +639,94 @@ if (!isset($_GET['id'])) {
                                     ?>
                                 </tbody>
                             </table>
+                            <div class="row">
+                            <div class="col-sm-6">
+                            <div class="panel panel-info">
+                                            <!-- Default panel contents -->
+                            <div class="panel-heading"><i class="fa   fa-book fa-fw fa-2x"></i> Akhlak dan Kepribadian Siswa</div>
+                            <div class="panel-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                            <?php
+                                $presensi= mysqli_query($link,"select tbl_siswa.nis,tbl_kelas.id_kelas,tbl_kelas.kd_kelas,presensi.semester,
+                                presensi.alfa,presensi.izin,presensi.sakit,presensi.akhlak,presensi.pribadi from
+tbl_siswa,tbl_kelas,presensi where presensi.nis=tbl_siswa.nis and presensi.nis=tbl_kelas.nis and presensi.nis='" . $_SESSION['admin-siswa'] . "'
+and tbl_kelas.kd_kelas='VIII' and presensi.semester='Genap'");
+                                        while ($row1 = mysqli_fetch_array($presensi)) {
+                                            //$kelas=$data_mhs['kelas'];
+                                            ?>
+                                <thead>
+                                        
+                                       <!--  <tr class="">
+                                               <th colspan="2" width="5%">Aklak dan Kepribadian</th>
+                                               
+
+                                               
+                                           </tr> -->
+                                            
+
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Akhlak</td>
+                                        <td width="15%"><?php echo $row1['akhlak'];?></td>
+                                        
+                                    </tr>
+                                        <tr>
+                                            <td>Kepribadian</td>
+                                            <td width="15%"><?php echo $row1['pribadi'];?></td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                            </div>
+                            </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                            <div class="panel panel-info">
+                                            <!-- Default panel contents -->
+                            <div class="panel-heading"><i class="fa   fa-book fa-fw fa-2x"></i> Kehadiran Siswa</div>
+                            <div class="panel-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                        
+                                        <tr class="">
+                                              <!--  <th colspan="3" width="5%">Kehadiran</th> -->
+                                               
+
+                                               
+                                           </tr>
+                                           
+
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                        <td>Sakit</td>
+                                        <td width="15%"><?php echo $row1['sakit'];?> Hari</td>
+                                        
+                                    </tr>
+                                        <tr>
+                                            <td>Izin</td>
+                                            <td width="15%"><?php echo $row1['izin'];?> Hari</td>
+                                        </tr>
+                                         <tr>
+                                            <td>Alfa</td>
+                                            <td  width="15%"><?php echo $row1['alfa'];?> Hari</td>
+                                        </tr>
+                                    </tbody>
+                                    <?php }
+                                    ?>
+                            </table>
+                            </div>
+                            </div>
                         </div>
+                       </div>
+
+
+                        </div>
+
+                        
+
+                    
 
                         <div class="tab-pane" id="ix">
 
@@ -502,6 +805,89 @@ if (!isset($_GET['id'])) {
                                     ?>
                                 </tbody>
                             </table>
+                             <div class="row">
+                            <div class="col-sm-6">
+                            <div class="panel panel-info">
+                                            <!-- Default panel contents -->
+                            <div class="panel-heading"><i class="fa   fa-book fa-fw fa-2x"></i> Akhlak dan Kepribadian Siswa</div>
+                            <div class="panel-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                            <?php
+                                $presensi= mysqli_query($link,"select tbl_siswa.nis,tbl_kelas.id_kelas,tbl_kelas.kd_kelas,presensi.semester,
+                                presensi.alfa,presensi.izin,presensi.sakit,presensi.akhlak,presensi.pribadi from
+tbl_siswa,tbl_kelas,presensi where presensi.nis=tbl_siswa.nis and presensi.nis=tbl_kelas.nis and presensi.nis='" . $_SESSION['admin-siswa'] . "'
+and tbl_kelas.kd_kelas='IX' and presensi.semester='Ganjil'");
+                                        while ($row1 = mysqli_fetch_array($presensi)) {
+                                            //$kelas=$data_mhs['kelas'];
+                                            ?>
+                                <thead>
+                                        
+                                       <!--  <tr class="">
+                                               <th colspan="2" width="5%">Aklak dan Kepribadian</th>
+                                               
+
+                                               
+                                           </tr> -->
+                                            
+
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Akhlak</td>
+                                        <td width="15%"><?php echo $row1['akhlak'];?></td>
+                                        
+                                    </tr>
+                                        <tr>
+                                            <td>Kepribadian</td>
+                                            <td width="15%"><?php echo $row1['pribadi'];?></td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                            </div>
+                            </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                            <div class="panel panel-info">
+                                            <!-- Default panel contents -->
+                            <div class="panel-heading"><i class="fa   fa-book fa-fw fa-2x"></i> Kehadiran Siswa</div>
+                            <div class="panel-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                        
+                                        <tr class="">
+                                              <!--  <th colspan="3" width="5%">Kehadiran</th> -->
+                                               
+
+                                               
+                                           </tr>
+                                           
+
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                        <td>Sakit</td>
+                                        <td width="15%"><?php echo $row1['sakit'];?> Hari</td>
+                                        
+                                    </tr>
+                                        <tr>
+                                            <td>Izin</td>
+                                            <td width="15%"><?php echo $row1['izin'];?> Hari</td>
+                                        </tr>
+                                         <tr>
+                                            <td>Alfa</td>
+                                            <td  width="15%"><?php echo $row1['alfa'];?> Hari</td>
+                                        </tr>
+                                    </tbody>
+                                    <?php }
+                                    ?>
+                            </table>
+                            </div>
+                            </div>
+                        </div>
+                       </div>
+
+
                         </div>
                         <div class="tab-pane" id="ixb">
 
@@ -579,7 +965,89 @@ if (!isset($_GET['id'])) {
                                     }
                                     ?>
                                 </tbody>
+                             <div class="row">
+                            <div class="col-sm-6">
+                            <div class="panel panel-info">
+                                            <!-- Default panel contents -->
+                            <div class="panel-heading"><i class="fa   fa-book fa-fw fa-2x"></i> Akhlak dan Kepribadian Siswa</div>
+                            <div class="panel-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                            <?php
+                                $presensi= mysqli_query($link,"select tbl_siswa.nis,tbl_kelas.id_kelas,tbl_kelas.kd_kelas,presensi.semester,
+                                presensi.alfa,presensi.izin,presensi.sakit,presensi.akhlak,presensi.pribadi from
+tbl_siswa,tbl_kelas,presensi where presensi.nis=tbl_siswa.nis and presensi.nis=tbl_kelas.nis and presensi.nis='" . $_SESSION['admin-siswa'] . "'
+and tbl_kelas.kd_kelas='IX' and presensi.semester='Genap'");
+                                        while ($row1 = mysqli_fetch_array($presensi)) {
+                                            //$kelas=$data_mhs['kelas'];
+                                            ?>
+                                <thead>
+                                        
+                                       <!--  <tr class="">
+                                               <th colspan="2" width="5%">Aklak dan Kepribadian</th>
+                                               
+
+                                               
+                                           </tr> -->
+                                            
+
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Akhlak</td>
+                                        <td width="15%"><?php echo $row1['akhlak'];?></td>
+                                        
+                                    </tr>
+                                        <tr>
+                                            <td>Kepribadian</td>
+                                            <td width="15%"><?php echo $row1['pribadi'];?></td>
+                                        </tr>
+                                    </tbody>
                             </table>
+                            </div>
+                            </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                            <div class="panel panel-info">
+                                            <!-- Default panel contents -->
+                            <div class="panel-heading"><i class="fa   fa-book fa-fw fa-2x"></i> Kehadiran Siswa</div>
+                            <div class="panel-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                        
+                                        <tr class="">
+                                              <!--  <th colspan="3" width="5%">Kehadiran</th> -->
+                                               
+
+                                               
+                                           </tr>
+                                           
+
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                        <td>Sakit</td>
+                                        <td width="15%"><?php echo $row1['sakit'];?> Hari</td>
+                                        
+                                    </tr>
+                                        <tr>
+                                            <td>Izin</td>
+                                            <td width="15%"><?php echo $row1['izin'];?> Hari</td>
+                                        </tr>
+                                         <tr>
+                                            <td>Alfa</td>
+                                            <td  width="15%"><?php echo $row1['alfa'];?> Hari</td>
+                                        </tr>
+                                    </tbody>
+                                    <?php }
+                                    ?>
+                            </table>
+                            </div>
+                            </div>
+                        </div>
+                       </div>
+
+
                         </div>
 
 

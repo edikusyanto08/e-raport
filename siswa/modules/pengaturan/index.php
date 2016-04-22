@@ -50,7 +50,7 @@ if (!isset($_SESSION['admin-siswa'])and ! isset($_SESSION['login-siswa'])) {
                         <td>:</td>
                         <td><?php echo $data['email']; ?></td>
                     </tr>
-                    <tr
+                    <tr>
                     <td><span class="fa fa-user fa-lg"></span> <b>Username</b></td>
                     <td>:</td>
                     <td><?php echo $data['username']; ?></td>

@@ -9,10 +9,10 @@ if (isset($_POST['ubah_p']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $passwd1 = $cipher->encrypt($pass_lama, $kunci);
         $passwd2 = $cipher->encrypt($pass_baru, $kunci);
 
-        $c_pass = mysqli_query($link, "SELECT password2 from akun where password2='" . $passwd1 . "' and nim='" . $_SESSION['admin-mhs'] . "'");
+        $c_pass = mysqli_query($link, "SELECT password2 from akun where password2='" . $passwd1 . "' and nis='" . $_SESSION['admin-siswa'] . "'");
         $ada = mysqli_fetch_assoc($c_pass);
         if ($ada['password2'] === $passwd1) {
-            $r_akun = mysqli_query($link, "update akun set password='" . md5($passwd2) . "', password2='" . $passwd2 . "' where nim='" . $_SESSION['admin-mhs'] . "'");
+            $r_akun = mysqli_query($link, "update akun set password='" . md5($passwd2) . "', password2='" . $passwd2 . "' where nis='" . $_SESSION['admin-siswa'] . "'");
             $info = "<div class='alert alert-dismissable alert-success' id='pesan'>
             <button type='button' class='close' data-dismiss='alert'>x</button>
             <h4>Berhasil!</h4>

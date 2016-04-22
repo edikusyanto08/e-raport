@@ -63,7 +63,7 @@ if (isset($_GET['admin'])) {
       <!-- Custom js for page-scroll -->
       <script type="text/javascript" src="style/super-hero/js/jquery-1.9.1.js"></script>
       <script type="text/javascript" src="style/super-hero/js/jquery.onepage-scroll.js"></script>
-      <script type="text/javascript" src="daftar-user.js"></script>
+      <script type="text/javascript" src="rapot.js"></script>
 
       <script src="add-master.js"></script>
       <script src="cek_nomer.js"></script>
@@ -129,26 +129,7 @@ if (isset($_GET['admin'])) {
                             <i class="fa fa-warning"></i>
                             <span class="label label-warning"></span>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li class="header">Service Running</li>
-                            <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu">
-                                    <li>
-                                        <a href="service_runing.php" target=_blanks>
-                                            <i class="glyphicon glyphicon-transfer"></i> Jalankan Service
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="service.php" target="_blanks" >
-                                            <i class="glyphicon glyphicon-sort"></i> Jalankan Service Gammu
-                                        </a>
-                                    </li>
-                                    
-                                </ul>
-                            </li>
-
-                        </ul>
+                        
                     </li>
                     
                     
@@ -163,7 +144,7 @@ if (isset($_GET['admin'])) {
                             <li class="user-header bg-light-blue">
                                 <img src="img/avatar3.png" class="img-circle" alt="User Image" />
                                 <p>
-                                    <?php echo $_SESSION['nama']; ?>
+                                    <?php echo $_SESSION['admin-username']; ?>
                                     <small>Administrator</small>
                                 </p>
                             </li>
@@ -171,9 +152,9 @@ if (isset($_GET['admin'])) {
 
                             <!-- Menu Footer-->
                             <li class="user-footer">
-                                <div class="pull-left">
+                                <!-- <div class="pull-left">
                                     <a href="index.php?modul=profil" class="btn btn-default btn-flat"><i class="fa fa-user"> Profil</i></a>
-                                </div>
+                                </div> -->
                                 <div class="pull-right">
                                     <a href="#" data-toggle="modal" data-target="#keluarModal" class="btn btn-default btn-flat"><i class="fa fa-power-off"> Keluar</i></a>
                                 </div>
@@ -266,16 +247,12 @@ if (isset($_GET['admin'])) {
                         </a>
                     </li>
                     <li class="active">
-                        <a href="#">
+                        <a href="?admin=raport">
                             <i class="fa fa-book fa-fw"></i> <span>Raport</span>
                         </a>
                     </li>
-                    <li class="active">
-                        <a href="index.php?modul=Informasi">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> <span>Statistik Pencapaian Siswa</span>
-                        </a>
-                    </li>
-                    <li class="treeview">
+                    
+                    <!-- <li class="treeview">
                         <a href="#">
                             <i class="fa fa-file-archive-o"></i>
                             <span>Laporan</span>
@@ -287,18 +264,18 @@ if (isset($_GET['admin'])) {
                             
 
                         </ul>
-                    </li>
+                    </li> -->
                     
                     <li class="active">
-                        <a href="#">
+                        <a href="?admin=data_user">
                             <i class="fa fa-user"></i> <span>Data User</span>
                         </a>
                     </li>
-                    <li class="active">
+                    <!-- <li class="active">
                         <a href="#">
                             <i class="fa fa-gears fa-fw"></i> <span>Pengaturan</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="active">
                         <a href="#"  data-toggle="modal" data-target="#keluarModal">
                             <i class="fa fa-power-off"></i> <span>Keluar</span>

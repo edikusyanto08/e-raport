@@ -72,20 +72,21 @@ function DateToIndo($date) { // fungsi atau method untuk mengubah tanggal ke for
                         ?>
                         <?php
                         $per_hal = 10;
-                        $jumlah_record = mysqli_query ($link,"SELECT * FROM tbl_siswa");
-        //$jum = mysql_result($jumlah_record,0);
-                        $jmldata    = mysqli_num_rows($jumlah_record);
-                        $halaman = ceil($jmldata/$per_hal);
-                        $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
-                        $start = ($page - 1) * $per_hal;
-                        $sql_siswa = mysqli_query($link, "SELECT * from tbl_siswa order by nis asc LIMIT $start, $per_hal");
+        //                 $jumlah_record = mysqli_query ($link,"SELECT * FROM tbl_siswa");
+        // //$jum = mysql_result($jumlah_record,0);
+        //                 $jmldata    = mysqli_num_rows($jumlah_record);
+        //                 $halaman = ceil($jmldata/$per_hal);
+        //                 $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+        //                 $start = ($page - 1) * $per_hal;
+                        $sql_siswa = mysqli_query($link, "SELECT * from tbl_siswa order by nis asc ");
                         $j = mysqli_num_rows($sql_siswa);
                         if ($j > 0) {
                             ?>
                             <div class="panel panel-primary">
                                 <!-- Default panel contents -->
                                 <div class="panel-heading"><i class="fa fa-users fa-fw fa-2x"></i> Data Siswa</div>
-                                <table class="table table-striped table-hover table-condensed">
+                                <div class="panel-body">
+                                <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -98,7 +99,7 @@ function DateToIndo($date) { // fungsi atau method untuk mengubah tanggal ke for
                                             <th width="20%">Alamat</th>
                                             <th width="10%">Telpon</th>
                                             
-                                            <th width="10%">Aksi</th>
+                                            <th width="15%">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -147,13 +148,13 @@ function DateToIndo($date) { // fungsi atau method untuk mengubah tanggal ke for
                             </tbody>
                         </table>
                         
-                        <nav>
+                        <!-- <nav>
                             <ul class="pagination">
 
                                 <li class="disabled"><a href="?admin=dt_siswa&page=<?php echo $page -1 ?>" aria-label="Previous"> <span aria-hidden="true">«</span></a></li>
                             </ul>
                             <?php 
-                            for($x=1;$x<=$halaman;$x++)
+                            //for($x=1;$x<=$halaman;$x++)
                             {
                                 ?>
                                 <ul class="pagination">
@@ -165,7 +166,7 @@ function DateToIndo($date) { // fungsi atau method untuk mengubah tanggal ke for
                             <ul class="pagination">
                                 <li><a href="?admin=dt_siswa&page=<?php echo $page +1 ?>" aria-label="Next"> <span aria-hidden="true">»</span></a></li>
                             </ul>
-                        </nav>
+                        </nav> -->
                     </div>
                 </div>
             </div>
@@ -215,6 +216,28 @@ function DateToIndo($date) { // fungsi atau method untuk mengubah tanggal ke for
             </div>
         </div>
     </div>
+    <script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+                    <script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+                    <!-- AdminLTE App -->
+                    <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+                    
+                    <!-- AdminLTE for demo purposes -->
+
+                    <!-- page script -->
+                   <script type="text/javascript">
+    $(function() {
+        $("#example1").dataTable();
+        $('#example2').dataTable({
+            "bPaginate": true,
+            "bLengthChange": false,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": false
+        });
+    });
+</script>
+
     <script src="../js/bootstrap-transition.js"></script>
     <script src="../js/bootstrap-datepicker.js"></script>
     <script>

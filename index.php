@@ -31,8 +31,11 @@ session_start();
         <img src="style/ico/tutwuri.png" alt="logo STMIK Bumigora" width="100" height="100">
         <h1><a href="#">Penilaian Hasil Belajar Siswa</a></h1>
         <small>SMPN 1 Mataram</small>
-        <a class="tultip btn btn-info" href="admin/" data-placement="left" title="" data-toggle="tooltip" data-original-title="Login Administrator" style="position:absolute; right:30px;margin-top:-20px;"><img src="style/img/admin.png" alt="logo STMIK Bumigora" width="30" height="30"></a>
+        <a class="tultip btn btn-info" href="admin/" data-placement="left" title="" data-toggle="tooltip" data-original-title="Login Administrator" style="position:absolute; right:85px;margin-top:-10px;"><img src="style/img/admin.png" alt="logo STMIK Bumigora" width="30" height="30"></a>
         <img src="style/img/toga1.png" alt="toga" width="80" height="78" style="position:absolute; left:150px;margin-top:-19px;">
+        
+        <i class="fa fa-user"></i><a class="tultip btn btn-info" href="user/" data-placement="left" title="" data-toggle="tooltip" data-original-title="Login Kepsek/Wali Kelas" style="position:absolute; right:20px;margin-top:-10px;"><img src="style/img/male.png" alt="logo STMIK Bumigora" width="30" height="30"></a>
+        
     </header>
     <div class="main">
 

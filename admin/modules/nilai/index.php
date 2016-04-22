@@ -130,7 +130,7 @@ if (!isset($_SESSION['admin-username']))
 
                       $sql ="select tbl_siswa.nis,tbl_siswa.nama_lengkap,tbl_mapel.kd_mapel,tbl_mapel.nama_mapel,tbl_guru.nip,tbl_guru.nama_guru,
                              tbl_kelas.id_kelas,tbl_kelas.kelas,rekap_nilai.semester,rekap_nilai.kkm,
-                             rekap_nilai.nilai_akhir from tbl_siswa,tbl_mapel,tbl_kelas,tbl_guru,
+                             rekap_nilai.nilai_akhir,rekap_nilai.keterangan from tbl_siswa,tbl_mapel,tbl_kelas,tbl_guru,
                              rekap_nilai where tbl_siswa.nis=rekap_nilai.nis and tbl_mapel.kd_mapel=rekap_nilai.kd_mapel and tbl_guru.nip=rekap_nilai.nip
                              and tbl_kelas.id_kelas=rekap_nilai.id_kelas and tbl_mapel.kd_mapel='$mapel' and tbl_kelas.kelas='$kelas'
                              and rekap_nilai.semester='$semester'";
@@ -146,7 +146,7 @@ if (!isset($_SESSION['admin-username']))
                             // $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
                             // $start = ($page - 1) * $per_hal;
                             $sql = "select tbl_siswa.nis,tbl_siswa.nama_lengkap,tbl_mapel.kd_mapel,tbl_mapel.nama_mapel,tbl_guru.nip,tbl_guru.nama_guru,
-                                    tbl_kelas.id_kelas,tbl_kelas.kelas,rekap_nilai.semester,rekap_nilai.kkm,rekap_nilai.nilai_akhir from tbl_siswa,tbl_mapel,tbl_kelas,tbl_guru,
+                                    tbl_kelas.id_kelas,tbl_kelas.kelas,rekap_nilai.semester,rekap_nilai.kkm,rekap_nilai.nilai_akhir,rekap_nilai.keterangan from tbl_siswa,tbl_mapel,tbl_kelas,tbl_guru,
                                     rekap_nilai where tbl_siswa.nis=rekap_nilai.nis and tbl_guru.nip=rekap_nilai.nip and tbl_mapel.kd_mapel=rekap_nilai.kd_mapel
                                     and tbl_kelas.id_kelas=rekap_nilai.id_kelas";
                               }
@@ -213,7 +213,7 @@ if (!isset($_SESSION['admin-username']))
                                             <th>Semester</th>
                                             <th>KKM</th>
                                             <th>Nilai</th>
-
+                                            <th>Huruf</th>
                                             <th>Keterangan</th>
                                             <th>Aksi</th>
                                           </tr>
@@ -243,7 +243,7 @@ if (!isset($_SESSION['admin-username']))
                                                                         <td><?php echo $data['semester']; ?></td>
                                                                         <td><?php echo $data['kkm']; ?></td>
                                                                         <td><?php echo $nilai; ?></td>
-
+                                                                        <td><?php echo $data['keterangan']; ?></td>
                                                                         <td>
 
                                                                             <?php
@@ -418,6 +418,13 @@ if (!isset($_SESSION['admin-username']))
                                                 <label class="col-lg-3 control-label">Nilai Pelajaran</label>
                                                 <div class="col-lg-8">
                                                     <input class="form-control"  id="tgl" type="text" name="nilai" placeholder="Masukkan Nilai" />
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-3 control-label">Nilai (Huruf)</label>
+                                                <div class="col-lg-8">
+                                                    <input class="form-control"  id="tgl" type="text" name="ket" placeholder="Masukkan Nilai" />
                                                     
                                                 </div>
                                             </div>

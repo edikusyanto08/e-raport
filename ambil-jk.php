@@ -1,10 +1,9 @@
 <?php
 
-mysql_connect('localhost','root','');
- mysql_select_db('db_raport');
+include "config/config.php";
 $nis = $_GET['inputNis'];
-$sql_cekjk = mysql_query("select nis,jk from tbl_siswa where nis='".$nis."'");
-$dt_nama = mysql_fetch_assoc($sql_cekjk);
-$ada_siswa = mysql_num_rows($sql_cekjk);
+$sql_cekjk = mysqli_query($link,"select nis,jk from tbl_siswa where nis='".$nis."'");
+$dt_nama = mysqli_fetch_assoc($sql_cekjk);
+$ada_siswa = mysqli_num_rows($sql_cekjk);
 echo $dt_nama['jk'];
 

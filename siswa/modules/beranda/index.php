@@ -22,20 +22,19 @@
  series:
  [
  <?php
- mysql_connect("localhost","root","");
- mysql_select_db("db_raport");
+$link1 = mysqli_connect("localhost", "root", "", "db_raport");
  $sql   = "SELECT tbl_nilai.nis,tbl_nilai.semester,tbl_kelas.id_kelas,tbl_kelas.kelas,tbl_siswa.nis,tbl_siswa.nama_lengkap
  FROM tbl_nilai,tbl_kelas,tbl_siswa where tbl_nilai.id_kelas=tbl_kelas.id_kelas and tbl_nilai.nis=tbl_siswa.nis and tbl_siswa.nis='" . $_SESSION['admin-siswa'] . "' ";
- $query = mysql_query($sql )  or die(mysql_error());
- while( $ret = mysql_fetch_array( $query ) ){
+ $query = mysqli_query($link1,$sql )  or die(mysqli_error());
+ while( $ret = mysqli_fetch_array( $query ) ){
     $merek=$ret['semester'];
     $nis=$ret['nama_lengkap'];
     $kelas=$ret['kelas'];
     $sql_jumlah   = "SELECT tbl_nilai.total_nilai as jml,tbl_nilai.semester as
     smt,tbl_nilai.nis as nis, tbl_nilai.id_kelas as kls,tbl_kelas.id_kelas,tbl_kelas.kelas FROM tbl_nilai,tbl_kelas WHERE
     tbl_nilai.id_kelas=tbl_kelas.id_kelas and tbl_kelas.kelas='$kelas' and semester='$merek'";
-    $query_jumlah = mysql_query($sql_jumlah ) or die(mysql_error());
-    while( $data = mysql_fetch_array( $query_jumlah ) ){
+    $query_jumlah = mysqli_query($link1,$sql_jumlah ) or die(mysqli_error());
+    while( $data = mysqli_fetch_array( $query_jumlah ) ){
         $jumlah = $data['jml'];
         $kls = $data['kls'];
     }
@@ -63,8 +62,8 @@
   //Membuat Query
   
     
-     $k=mysql_query("select nilai_akhir as jml,semester,kd_mapel,id_kelas from rekap_nilai where nis='" . $_SESSION['admin-siswa'] . "' order by id_kelas");        
-  $q=mysql_query("SELECT rekap_nilai.nis,rekap_nilai.semester,tbl_kelas.id_kelas,tbl_kelas.kelas,tbl_mapel.kd_mapel,
+     $k=mysqli_query($link1,"select nilai_akhir as jml,semester,kd_mapel,id_kelas from rekap_nilai where nis='" . $_SESSION['admin-siswa'] . "' order by id_kelas");        
+  $q=mysqli_query($link1,"SELECT rekap_nilai.nis,rekap_nilai.semester,tbl_kelas.id_kelas,tbl_kelas.kelas,tbl_mapel.kd_mapel,
         tbl_mapel.nama_mapel  FROM rekap_nilai,tbl_kelas,tbl_mapel 
         where rekap_nilai.id_kelas=tbl_kelas.id_kelas and rekap_nilai.kd_mapel=tbl_mapel.kd_mapel and rekap_nilai.nis='" . $_SESSION['admin-siswa'] . "'");
                
@@ -92,7 +91,7 @@ var chart1; // globally available
             x: -20
         },
         xAxis: {
-              categories: [<?php while($r=mysql_fetch_array($q)){ echo "'Kelas :".$r["kelas"]." <br/>Mapel :".$r["nama_mapel"]." <br/>Semester: ".$r["semester"]."',";}?>]
+              categories: [<?php while($r=mysqli_fetch_array($q)){ echo "'Kelas :".$r["kelas"]." <br/>Mapel :".$r["nama_mapel"]." <br/>Semester: ".$r["semester"]."',";}?>]
         },
         yAxis: {
             title: {
@@ -115,7 +114,7 @@ var chart1; // globally available
         },
         series: [{
             name: 'Nilai Mapel',
-            data: [<?php while($t=mysql_fetch_array($k)){ echo $t["jml"].",";}?>]
+            data: [<?php while($t=mysqli_fetch_array($k)){ echo $t["jml"].",";}?>]
         }]
     });
 });
@@ -126,7 +125,7 @@ var chart1; // globally available
 <h3 class="page-header"><i class="fa fa-home fa-fw fa-2x"></i>Beranda </h3>
 
 <div class="row">
-    <div class="col-md-12 text-right">
+    <div class="col-md-5 text-right">
         <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading">Statistik Hasil Belajar Siswa Per Semester <i class="fa fa-bar-chart-o fa-fw fa-2x"></i></div>
@@ -136,7 +135,7 @@ var chart1; // globally available
         </div>
     </div>
 
-    <div class="col-md-12 text-right">
+    <div class="col-md-7 text-right">
         <div class="panel panel-primary">
             <!-- Default panel contents -->
              <div class="panel-heading">Statistik Hasil Belajar Siswa Per Pelajaran <i class="fa fa-bar-chart-o fa-fw fa-2x"></i></div>
