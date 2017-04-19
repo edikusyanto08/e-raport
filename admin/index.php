@@ -38,6 +38,10 @@ if (isset($_GET['admin'])) {
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
     <link href="css/select2.css" rel="stylesheet"  type="text/css"/>
     <link href="css/select2.min.css" rel="stylesheet" type="text/css"/>
+
+    <script src="js/sample.js"></script>
+    <link rel="stylesheet" href="css/samples.css">
+    <link rel="stylesheet" href="toolbarconfigurator/lib/codemirror/neo.css">
     <!-- favicon STMIK -->
     <link rel="shortcut icon" href="style/ico/tutwuri.png">
        <!--   <link href="assets/libs/jqueryui/ui-lightness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
@@ -265,7 +269,11 @@ if (isset($_GET['admin'])) {
 
                         </ul>
                     </li> -->
-                    
+                    <li class="active">
+                        <a href="?admin=info">
+                            <i class="fa fa-info-circle"></i> <span>Informasi</span>
+                        </a>
+                    </li>
                     <li class="active">
                         <a href="?admin=data_user">
                             <i class="fa fa-user"></i> <span>Data User</span>
@@ -314,6 +322,7 @@ if (isset($_GET['admin'])) {
     <!-- Page Specific JS Libraries -->
     <script src="assets/libs/jquery-wizard/jquery.easyWizard.js"></script>
     <script src="assets/js/form-wizard.js"></script>
+   
     
     
 

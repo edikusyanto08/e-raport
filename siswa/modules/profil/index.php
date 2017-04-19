@@ -105,7 +105,7 @@ function DateToIndo($date) { // fungsi atau method untuk mengubah tanggal ke for
                         </table>
                     </div>
                 </div>
-                <a class="tultip btn btn-primary btn-lg" data-toggle="modal" data-target="#ubahPass" data-placement="bottom" title="" data-toggle="tooltip" data-original-title="Ubah Profil Anda"><span class="fa fa-refresh fa-lg"> Ubah Profil</span></a>
+                
             </div>
         </div>
     </div>

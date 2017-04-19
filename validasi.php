@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Penilaian Kegiatan Ekstrakurikuler</title>
+        <title>SMPN 1 Mataram</title>
         <meta name="description" content="The plugin will detect your mouse wheel and swipe gestures to determine which way the page should scroll." />
         <meta name="keywords" content="ekstrakurikuler, kegiatan ekskul mahasiswa, stmik bumigora, mataram" />
         <meta name="author" content="kemahasiswaan stmik bumigora mataram" />
@@ -23,9 +23,9 @@
     <body>
 
         <header>
-            <img src="style/img/logo-stmik.png" alt="logo STMIK Bumigora" width="100" height="100">
-            <h1><a href="#">Penilaian Kegiatan Ekstrakurikuler Mahasiswa</a></h1>
-            <small>STMIK Bumigora Mataram</small>
+            <img src="style/img/tutwuri.png" alt="logo STMIK Bumigora" width="100" height="100">
+            <h1><a href="#">Laporan Hasil Belajar Siswa</a></h1>
+            <small>SMPN 1 Mataram</small>
             <a class="tultip btn btn-info" href="admin/" data-placement="left" title="" data-toggle="tooltip" data-original-title="Login Administrator" style="position:absolute; right:30px;margin-top:-20px;"><img src="style/img/admin.png" alt="logo STMIK Bumigora" width="30" height="30"></a>
             <img src="style/img/toga1.png" alt="toga" width="80" height="78" style="position:absolute; left:150px;margin-top:-19px;">
         </header>

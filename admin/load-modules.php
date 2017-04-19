@@ -147,7 +147,19 @@ switch ($module) {
     case 'proses_spk' :
     require("modules/perangkingan/langkah-spk.php");
     break;
-
+//info
+ case 'info' :
+    require("modules/info/index.php");
+    break;
+    case 'add_info' :
+    require("modules/info/add_info.php");
+    break;
+    case 'del_info' :
+    require("modules/info/del_info.php");
+    break;
+     case 'ubah_info' :
+    require("modules/info/ubah_info.php");
+    break;
     //------------Route Untuk Halaman Pengaturan------------//
     case 'chart-siswa' :
     require("modules/raport/grafik.php");
