@@ -85,17 +85,17 @@ $k = mysqli_fetch_assoc($sql_mapel);
                                     
                                         
                                         <tr class="">
-                                               <th rowspan="3" width="5%">No</th>
-                                               <th rowspan="3" width="10%">Kode Mapel</th>
-                                               <th rowspan="3" width="30%">Mata Pelajaran</th>
-                                               <th rowspan="3" width="5%">KKM*)</th>
+                                               <th rowspan="2" width="5%">No</th>
+                                               <th rowspan="2" width="10%">Kode Mapel</th>
+                                               <th rowspan="2" width="30%">Mata Pelajaran</th>
+                                               <th rowspan="2" width="5%">KKM*)</th>
                                                <th colspan="2" >Nilai</th>
-                                               <th rowspan="3" width="20%">Deskripsi Nilai</th>
+                                               <th rowspan="2" width="20%">Deskripsi Nilai</th>
                                                
                                            </tr>
                                            <tr class="">
-                                            <th rowspan="2" width="5%" align="center">Angka</th>
-                                            <th rowspan="2" width="20%" align="center">Huruf</th>
+                                            <th rowspan="1" width="5%" align="center">Angka</th>
+                                            <th rowspan="1" width="20%" align="center">Huruf</th>
                                             <!-- <th align="center">Registrasi</th> -->
                                         </tr> 
 
@@ -105,7 +105,7 @@ $k = mysqli_fetch_assoc($sql_mapel);
                                         //
                                         
                                         while ($data_mhs = mysqli_fetch_array($sql_laporan)) {
-
+                                            $kelas=$data_mhs['kelas'];
                                             
                                             //$kelas=$data_mhs['id_kelas'];
                                             ?>
@@ -133,6 +133,7 @@ $k = mysqli_fetch_assoc($sql_mapel);
                                                     
                                                 </td>
                                                 
+                                                
                                             </tr>
                                             
                                             <?php
@@ -140,7 +141,19 @@ $k = mysqli_fetch_assoc($sql_mapel);
 
                                         }
                                         ?>
-                                       
+                                       <td colspan="5" class="text-right" style="vertical-align: middle; letter-spacing: 3px;font-weight: 900;">Total Nilai : </td>
+                                            <td>
+                                                <?php
+                                                $query_total = mysqli_query($link, "SELECT rekap_nilai.nis,tbl_kelas.id_kelas,
+                                                     tbl_kelas.kelas,Sum(rekap_nilai.nilai_akhir) as tot_nilai
+                                                    FROM rekap_nilai,tbl_kelas
+                                                    WHERE rekap_nilai.id_kelas=tbl_kelas.id_kelas and rekap_nilai.nis ='$nis' 
+                                                    and rekap_nilai.semester='Ganjil' GROUP BY rekap_nilai.nis");
+                                                $total_nilai = mysqli_fetch_array($query_total);
+                                                $jml_nilai_mhs = $total_nilai['tot_nilai'];
+                                                ?>
+                                                <input class="form-control" type="text" id="total" name="total" required value="<?php echo $jml_nilai_mhs; ?>" readonly>
+                                            </td>
                                         <?php
                                     } else {
                                         ?>
@@ -249,17 +262,17 @@ $k = mysqli_fetch_assoc($sql_mapel);
                                     
                                         
                                         <tr class="">
-                                               <th rowspan="3" width="5%">No</th>
-                                               <th rowspan="3" width="10%">Kode Mapel</th>
-                                               <th rowspan="3" width="30%">Mata Pelajaran</th>
-                                               <th rowspan="3" width="5%">KKM*)</th>
+                                               <th rowspan="2" width="5%">No</th>
+                                               <th rowspan="2" width="10%">Kode Mapel</th>
+                                               <th rowspan="2" width="30%">Mata Pelajaran</th>
+                                               <th rowspan="2" width="5%">KKM*)</th>
                                                <th colspan="2" >Nilai</th>
-                                               <th rowspan="3" width="20%">Deskripsi Nilai</th>
+                                               <th rowspan="2" width="20%">Deskripsi Nilai</th>
                                                
                                            </tr>
                                            <tr class="">
-                                            <th rowspan="2" width="5%" align="center">Angka</th>
-                                            <th rowspan="2" width="20%" align="center">Huruf</th>
+                                            <th rowspan="1" width="5%" align="center">Angka</th>
+                                            <th rowspan="1" width="20%" align="center">Huruf</th>
                                             <!-- <th align="center">Registrasi</th> -->
                                         </tr> 
 
@@ -270,7 +283,7 @@ $k = mysqli_fetch_assoc($sql_mapel);
                                         
                                         while ($data_mhs = mysqli_fetch_array($sql_laporan)) {
 
-                                            
+                                            $kelas=$data_mhs['kelas'];
                                             //$kelas=$data_mhs['id_kelas'];
                                             ?>
 
@@ -295,6 +308,7 @@ $k = mysqli_fetch_assoc($sql_mapel);
                                                     <input class="form-control" type="hidden"  name="kelas[]" id="kelas" value="<?php echo $data_mhs['id_kelas']?>">
                                                     <input class="form-control" type="text" id="desk" name="desk[]" required>
                                                     
+                                                    
                                                 </td>
                                                 
                                             </tr>
@@ -304,7 +318,19 @@ $k = mysqli_fetch_assoc($sql_mapel);
 
                                         }
                                         ?>
-                                       
+                                       <td colspan="5" class="text-right" style="vertical-align: middle; letter-spacing: 3px;font-weight: 900;">Total Nilai : </td>
+                                            <td>
+                                                <?php
+                                                $query_total = mysqli_query($link, "SELECT rekap_nilai.nis,tbl_kelas.id_kelas,
+                                                     tbl_kelas.kelas,Sum(rekap_nilai.nilai_akhir) as tot_nilai
+                                                    FROM rekap_nilai,tbl_kelas
+                                                    WHERE rekap_nilai.id_kelas=tbl_kelas.id_kelas and rekap_nilai.nis ='$nis' 
+                                                    and rekap_nilai.semester='Genap' GROUP BY rekap_nilai.nis");
+                                                $total_nilai = mysqli_fetch_array($query_total);
+                                                $jml_nilai_mhs = $total_nilai['tot_nilai'];
+                                                ?>
+                                                <input class="form-control" type="text" id="total" name="total" required value="<?php echo $jml_nilai_mhs; ?>" readonly>
+                                            </td>
                                         <?php
                                     } else {
                                         ?>
@@ -411,17 +437,17 @@ $k = mysqli_fetch_assoc($sql_mapel);
                                     
                                         
                                         <tr class="">
-                                               <th rowspan="3" width="5%">No</th>
-                                               <th rowspan="3" width="10%">Kode Mapel</th>
-                                               <th rowspan="3" width="30%">Mata Pelajaran</th>
-                                               <th rowspan="3" width="5%">KKM*)</th>
+                                               <th rowspan="2" width="5%">No</th>
+                                               <th rowspan="2" width="10%">Kode Mapel</th>
+                                               <th rowspan="2" width="30%">Mata Pelajaran</th>
+                                               <th rowspan="2" width="5%">KKM*)</th>
                                                <th colspan="2" >Nilai</th>
-                                               <th rowspan="3" width="20%">Deskripsi Nilai</th>
+                                               <th rowspan="2" width="20%">Deskripsi Nilai</th>
                                                
                                            </tr>
                                            <tr class="">
-                                            <th rowspan="2" width="5%" align="center">Angka</th>
-                                            <th rowspan="2" width="20%" align="center">Huruf</th>
+                                            <th rowspan="1" width="5%" align="center">Angka</th>
+                                            <th rowspan="1" width="20%" align="center">Huruf</th>
                                             <!-- <th align="center">Registrasi</th> -->
                                         </tr> 
 
@@ -432,7 +458,7 @@ $k = mysqli_fetch_assoc($sql_mapel);
                                         
                                         while ($data_mhs = mysqli_fetch_array($sql_laporan)) {
 
-                                            
+                                             $kelas=$data_mhs['kelas'];
                                             //$kelas=$data_mhs['id_kelas'];
                                             ?>
 
@@ -456,6 +482,7 @@ $k = mysqli_fetch_assoc($sql_mapel);
                                                     <input class="form-control" type="hidden" name="semester[]" id="semester" value="<?php echo $data_mhs['semester']?>">
                                                     <input class="form-control" type="hidden"  name="kelas[]" id="kelas" value="<?php echo $data_mhs['id_kelas']?>">
                                                     <input class="form-control" type="text" id="desk" name="desk[]" required>
+
                                                     
                                                 </td>
                                                 
@@ -466,6 +493,20 @@ $k = mysqli_fetch_assoc($sql_mapel);
 
                                         }
                                         ?>
+                                        <td colspan="5" class="text-right" style="vertical-align: middle; letter-spacing: 3px;font-weight: 900;">Total Nilai : </td>
+                                            <td>
+                                                <?php
+                                                $query_total = mysqli_query($link, "SELECT rekap_nilai.nis,tbl_kelas.id_kelas,
+                                                     tbl_kelas.kelas,Sum(rekap_nilai.nilai_akhir) as tot_nilai
+                                                    FROM rekap_nilai,tbl_kelas
+                                                    WHERE rekap_nilai.id_kelas=tbl_kelas.id_kelas and rekap_nilai.nis ='$nis' 
+                                                    and rekap_nilai.semester='Ganjil' GROUP BY rekap_nilai.nis");
+                                                $total_nilai = mysqli_fetch_array($query_total);
+                                                $jml_nilai_mhs = $total_nilai['tot_nilai'];
+                                                ?>
+                                                <input class="form-control" type="text" id="total" name="total" required value="<?php echo $jml_nilai_mhs; ?>" readonly>
+                                            </td>
+                                                    
                                        
                                         <?php
                                     } else {
@@ -590,7 +631,7 @@ $k = mysqli_fetch_assoc($sql_mapel);
                                         //
                                         
                                         while ($data_mhs = mysqli_fetch_array($sql_laporan)) {
-
+                                            $kelas=$data_mhs['kelas'];
                                             
                                             //$kelas=$data_mhs['id_kelas'];
                                             ?>
@@ -625,7 +666,19 @@ $k = mysqli_fetch_assoc($sql_mapel);
 
                                         }
                                         ?>
-                                       
+                                       <td colspan="5" class="text-right" style="vertical-align: middle; letter-spacing: 3px;font-weight: 900;">Total Nilai : </td>
+                                            <td>
+                                                <?php
+                                                $query_total = mysqli_query($link, "SELECT rekap_nilai.nis,tbl_kelas.id_kelas,
+                                                     tbl_kelas.kelas,Sum(rekap_nilai.nilai_akhir) as tot_nilai
+                                                    FROM rekap_nilai,tbl_kelas
+                                                    WHERE rekap_nilai.id_kelas=tbl_kelas.id_kelas and rekap_nilai.nis ='$nis' 
+                                                    and rekap_nilai.semester='Genap' GROUP BY rekap_nilai.nis");
+                                                $total_nilai = mysqli_fetch_array($query_total);
+                                                $jml_nilai_mhs = $total_nilai['tot_nilai'];
+                                                ?>
+                                                <input class="form-control" type="text" id="total" name="total" required value="<?php echo $jml_nilai_mhs; ?>" readonly>
+                                            </td>
                                         <?php
                                     } else {
                                         ?>
@@ -731,17 +784,17 @@ $k = mysqli_fetch_assoc($sql_mapel);
                                     
                                         
                                         <tr class="">
-                                               <th rowspan="3" width="5%">No</th>
-                                               <th rowspan="3" width="10%">Kode Mapel</th>
-                                               <th rowspan="3" width="30%">Mata Pelajaran</th>
-                                               <th rowspan="3" width="5%">KKM*)</th>
+                                               <th rowspan="2" width="5%">No</th>
+                                               <th rowspan="2" width="10%">Kode Mapel</th>
+                                               <th rowspan="2" width="30%">Mata Pelajaran</th>
+                                               <th rowspan="2" width="5%">KKM*)</th>
                                                <th colspan="2" >Nilai</th>
-                                               <th rowspan="3" width="20%">Deskripsi Nilai</th>
+                                               <th rowspan="2" width="20%">Deskripsi Nilai</th>
                                                
                                            </tr>
                                            <tr class="">
-                                            <th rowspan="2" width="5%" align="center">Angka</th>
-                                            <th rowspan="2" width="20%" align="center">Huruf</th>
+                                            <th rowspan="1" width="5%" align="center">Angka</th>
+                                            <th rowspan="1" width="20%" align="center">Huruf</th>
                                             <!-- <th align="center">Registrasi</th> -->
                                         </tr> 
 
@@ -752,7 +805,7 @@ $k = mysqli_fetch_assoc($sql_mapel);
                                         
                                         while ($data_mhs = mysqli_fetch_array($sql_laporan)) {
 
-                                            
+                                            $kelas=$data_mhs['kelas'];
                                             //$kelas=$data_mhs['id_kelas'];
                                             ?>
 
@@ -786,7 +839,19 @@ $k = mysqli_fetch_assoc($sql_mapel);
 
                                         }
                                         ?>
-                                       
+                                       <td colspan="5" class="text-right" style="vertical-align: middle; letter-spacing: 3px;font-weight: 900;">Total Nilai : </td>
+                                            <td>
+                                                <?php
+                                                $query_total = mysqli_query($link, "SELECT rekap_nilai.nis,tbl_kelas.id_kelas,
+                                                     tbl_kelas.kelas,Sum(rekap_nilai.nilai_akhir) as tot_nilai
+                                                    FROM rekap_nilai,tbl_kelas
+                                                    WHERE rekap_nilai.id_kelas=tbl_kelas.id_kelas and rekap_nilai.nis ='$nis' 
+                                                    and rekap_nilai.semester='Ganjil' GROUP BY rekap_nilai.nis");
+                                                $total_nilai = mysqli_fetch_array($query_total);
+                                                $jml_nilai_mhs = $total_nilai['tot_nilai'];
+                                                ?>
+                                                <input class="form-control" type="text" id="total" name="total" required value="<?php echo $jml_nilai_mhs; ?>" readonly>
+                                            </td>
                                         <?php
                                     } else {
                                         ?>
@@ -891,17 +956,17 @@ $k = mysqli_fetch_assoc($sql_mapel);
                                     
                                         
                                         <tr class="">
-                                               <th rowspan="3" width="5%">No</th>
-                                               <th rowspan="3" width="10%">Kode Mapel</th>
-                                               <th rowspan="3" width="30%">Mata Pelajaran</th>
-                                               <th rowspan="3" width="5%">KKM*)</th>
+                                               <th rowspan="2" width="5%">No</th>
+                                               <th rowspan="2" width="10%">Kode Mapel</th>
+                                               <th rowspan="2" width="30%">Mata Pelajaran</th>
+                                               <th rowspan="2" width="5%">KKM*)</th>
                                                <th colspan="2" >Nilai</th>
-                                               <th rowspan="3" width="20%">Deskripsi Nilai</th>
+                                               <th rowspan="2" width="20%">Deskripsi Nilai</th>
                                                
                                            </tr>
                                            <tr class="">
-                                            <th rowspan="2" width="5%" align="center">Angka</th>
-                                            <th rowspan="2" width="20%" align="center">Huruf</th>
+                                            <th rowspan="1" width="5%" align="center">Angka</th>
+                                            <th rowspan="1" width="20%" align="center">Huruf</th>
                                             <!-- <th align="center">Registrasi</th> -->
                                         </tr> 
 
@@ -911,7 +976,7 @@ $k = mysqli_fetch_assoc($sql_mapel);
                                         //
                                         
                                         while ($data_mhs = mysqli_fetch_array($sql_laporan)) {
-
+                                            $kelas=$data_mhs['kelas'];
                                             
                                             //$kelas=$data_mhs['id_kelas'];
                                             ?>
@@ -946,7 +1011,19 @@ $k = mysqli_fetch_assoc($sql_mapel);
 
                                         }
                                         ?>
-                                       
+                                        <td colspan="5" class="text-right" style="vertical-align: middle; letter-spacing: 3px;font-weight: 900;">Total Nilai : </td>
+                                            <td>
+                                                <?php
+                                                $query_total = mysqli_query($link, "SELECT rekap_nilai.nis,tbl_kelas.id_kelas,
+                                                     tbl_kelas.kelas,Sum(rekap_nilai.nilai_akhir) as tot_nilai
+                                                    FROM rekap_nilai,tbl_kelas
+                                                    WHERE rekap_nilai.id_kelas=tbl_kelas.id_kelas and rekap_nilai.nis ='$nis' 
+                                                    and rekap_nilai.semester='Genap' GROUP BY rekap_nilai.nis");
+                                                $total_nilai = mysqli_fetch_array($query_total);
+                                                $jml_nilai_mhs = $total_nilai['tot_nilai'];
+                                                ?>
+                                                <input class="form-control" type="text" id="total" name="total" required value="<?php echo $jml_nilai_mhs; ?>" readonly>
+                                            </td>
                                         <?php
                                     } else {
                                         ?>

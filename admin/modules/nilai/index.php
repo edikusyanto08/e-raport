@@ -402,8 +402,8 @@ if (!isset($_SESSION['admin-username']))
                                                 <div class="col-lg-8">
                                                   <select required="" name="semester" class="form-control">
                                                   <option value="">Pilih Semester</option>
-                                                  <option value="Genap" >Genap</option>
                                                   <option value="Ganjil" >Ganjil</option>
+                                                  <option value="Genap" >Genap</option>
                                                   </select>
                                                 </div>
                                                 </div>

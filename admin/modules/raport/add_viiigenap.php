@@ -5,6 +5,7 @@
           $sakit=$_POST['sakit'];
           $akhlak=$_POST['akhlak'];
           $pribadi=$_POST['pribadi'];
+          $total=$_POST['total'];
            for ($i = 0; $i < count($_POST['nis']); $i++){
             $nis = $_POST['nis'][$i];
             $kd_mapel = $_POST['kd_mapel'][$i];
@@ -16,6 +17,8 @@
              $kelas = $_POST['kelas'][$i];
             $desk = $_POST['desk'][$i];
 
+
+
            
             $sql="INSERT INTO rapot (nis,kd_mapel,nilai,kkm,ket_nilai,deskripsi,semester,id_kelas)
                        values('$nis','$kd_mapel','$NA','$kkm','$ket','$desk','$semester','$kelas')";
@@ -23,6 +26,7 @@
            
            
                 $query = mysqli_query($link, $sql);
+                
            //echo $sql;    
                
          
@@ -33,6 +37,8 @@
            
            
                 $query1 = mysqli_query($link, $sql1);
+      $total1=mysqli_query($link,"INSERT INTO tbl_nilai(nis,id_kelas,semester,total_nilai)
+                                  values('$nis','$kelas','$semester','$total')");
       
       if ($query) {
         $alert = "<div class=\"alert alert-success alert-dismissable\" id='pesan'>

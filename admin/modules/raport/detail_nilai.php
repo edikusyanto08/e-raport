@@ -224,15 +224,16 @@ and tbl_kelas.kd_kelas='VII' and presensi.semester='Ganjil'");
                                         <thead>
                                            <tr class="">
                                                <th rowspan="3" width="5%">No</th>
-                                               <th rowspan="3" width="20%">Mata Pelajaran</th>
+                                               <th rowspan="3" width="10%">Kode Mapel</th>
+                                               <th rowspan="3" width="30%">Mata Pelajaran</th>
                                                <th rowspan="3" width="5%">KKM*)</th>
                                                <th colspan="2" >Nilai</th>
-
-                                               <th rowspan="3" width="30%">Deskripsi Kemajuan Belajar</th>
+                                               <th rowspan="3" width="20%">Deskripsi Nilai</th>
+                                               
                                            </tr>
                                            <tr class="">
-                                            <th rowspan="2" align="center">Angka</th>
-                                            <th rowspan="2" align="center">Huruf</th>
+                                            <th rowspan="2" width="5%" align="center">Angka</th>
+                                            <th rowspan="2" width="20%" align="center">Huruf</th>
                                             <!-- <th align="center">Registrasi</th> -->
                                         </tr> 
 
@@ -374,16 +375,16 @@ and tbl_kelas.kd_kelas='VII' and presensi.semester='Genap'");
 
                                         <thead>
                                            <tr class="">
-                                               <th rowspan="3" width="5%">No</th>
-                                               <th rowspan="3" width="20%">Mata Pelajaran</th>
-                                               <th rowspan="3" width="5%">KKM*)</th>
+                                               <th rowspan="2" width="5%">No</th>
+                                               <th rowspan="2" width="20%">Mata Pelajaran</th>
+                                               <th rowspan="2" width="5%">KKM*)</th>
                                                <th colspan="2" >Nilai</th>
 
-                                               <th rowspan="3" width="30%">Deskripsi Kemajuan Belajar</th>
+                                               <th rowspan="2" width="30%">Deskripsi Kemajuan Belajar</th>
                                            </tr>
                                            <tr class="">
-                                            <th rowspan="2" align="center">Angka</th>
-                                            <th rowspan="2" align="center">Huruf</th>
+                                            <th rowspan="1" align="center">Angka</th>
+                                            <th rowspan="1" align="center">Huruf</th>
                                             <!-- <th align="center">Registrasi</th> -->
                                         </tr> 
 
